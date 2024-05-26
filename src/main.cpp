@@ -132,16 +132,24 @@ bool isGameOver() {
   }
   
   for (int i = 0; i < GRID_SIZE; i++) {
-    for (int j = 0; j < GRID_SIZE; j++) {
-      if ((i < GRID_SIZE - 1 && grid[i][j] == grid[i + 1][j]) ||
-          (j < GRID_SIZE - 1 && grid[i][j] == grid[i][j + 1])) {
+    for (int j = 0; j < GRID_SIZE - 1; j++) {
+      if (grid[i][j] == grid[i][j + 1]) {
         return false;
       }
     }
   }
-  
+
+  for (int j = 0; j < GRID_SIZE; j++) {
+    for (int i = 0; i < GRID_SIZE - 1; i++) {
+      if (grid[i][j] == grid[i + 1][j]) {
+        return false;
+      }
+    }
+  }
+
   return true;
 }
+
 
 void drawGameOverScreen() {
   tft.fillScreen(ST7735_BLACK);
